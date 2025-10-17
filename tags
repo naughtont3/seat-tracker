@@ -1,0 +1,130 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+COLOR_BOLD	src/calendar_view.py	/^    COLOR_BOLD = "\\033[1m"$/;"	v	class:CalendarView
+COLOR_HEADER	src/calendar_view.py	/^    COLOR_HEADER = "\\033[1;37m"   # Bold white for headers$/;"	v	class:CalendarView
+COLOR_HOLIDAY	src/calendar_view.py	/^    COLOR_HOLIDAY = "\\033[31m"    # Red for HOLIDAY$/;"	v	class:CalendarView
+COLOR_HOME	src/calendar_view.py	/^    COLOR_HOME = "\\033[32m"       # Green for HOME$/;"	v	class:CalendarView
+COLOR_LAB	src/calendar_view.py	/^    COLOR_LAB = "\\033[34m"        # Blue for LAB$/;"	v	class:CalendarView
+COLOR_OTHER	src/calendar_view.py	/^    COLOR_OTHER = "\\033[37m"      # White for OTHER$/;"	v	class:CalendarView
+COLOR_RESET	src/calendar_view.py	/^    COLOR_RESET = "\\033[0m"$/;"	v	class:CalendarView
+COLOR_TRAVEL	src/calendar_view.py	/^    COLOR_TRAVEL = "\\033[35m"     # Magenta for TRAVEL$/;"	v	class:CalendarView
+COLOR_VACATION	src/calendar_view.py	/^    COLOR_VACATION = "\\033[33m"   # Yellow for VACATION$/;"	v	class:CalendarView
+COLOR_WEEK	src/calendar_view.py	/^    COLOR_WEEK = "\\033[36m"      # Cyan for week numbers$/;"	v	class:CalendarView
+COLOR_WEEKEND	src/calendar_view.py	/^    COLOR_WEEKEND = "\\033[90m"    # Dark gray for WEEKEND$/;"	v	class:CalendarView
+CalendarView	src/calendar_view.py	/^class CalendarView:$/;"	c
+HOLIDAY	src/location_tracker.py	/^    HOLIDAY = ("X", "Holiday")$/;"	v	class:LocationDesignation
+HOME	src/location_tracker.py	/^    HOME = ("H", "Work From Home")$/;"	v	class:LocationDesignation
+InteractiveMode	src/interactive.py	/^class InteractiveMode:$/;"	c
+LAB	src/location_tracker.py	/^    LAB = ("L", "Work From Lab")$/;"	v	class:LocationDesignation
+LocationDesignation	src/location_tracker.py	/^class LocationDesignation(Enum):$/;"	c
+LocationStatistics	src/statistics.py	/^class LocationStatistics:$/;"	c
+LocationTracker	src/location_tracker.py	/^class LocationTracker:$/;"	c
+OTHER	src/location_tracker.py	/^    OTHER = ("O", "Other")$/;"	v	class:LocationDesignation
+TRAVEL	src/location_tracker.py	/^    TRAVEL = ("T", "Work Travel")$/;"	v	class:LocationDesignation
+VACATION	src/location_tracker.py	/^    VACATION = ("V", "Vacation")$/;"	v	class:LocationDesignation
+WEEKEND	src/location_tracker.py	/^    WEEKEND = ("W", "Weekend")$/;"	v	class:LocationDesignation
+__all__	src/__init__.py	/^__all__ = [$/;"	v
+__init__	src/calendar_view.py	/^    def __init__(self, tracker: LocationTracker, use_color: bool = True):$/;"	m	class:CalendarView
+__init__	src/interactive.py	/^    def __init__(self, tracker: LocationTracker, use_color: bool = True):$/;"	m	class:InteractiveMode
+__init__	src/location_tracker.py	/^    def __init__(self, data_dir: Path = None):$/;"	m	class:LocationTracker
+__init__	src/location_tracker.py	/^    def __init__(self, short_code, description):$/;"	m	class:LocationDesignation
+__init__	src/statistics.py	/^    def __init__(self, tracker: LocationTracker):$/;"	m	class:LocationStatistics
+__init__.py	src/__init__.py	1;"	F
+__version__	src/__init__.py	/^__version__ = '1.0.0'$/;"	v
+_auto_populate_weekend	src/location_tracker.py	/^    def _auto_populate_weekend(self, date: datetime.date, data: Dict[datetime.date, LocationDesignation]):$/;"	m	class:LocationTracker
+_count_designations	src/statistics.py	/^    def _count_designations(self, data: Dict[date, LocationDesignation]) -> Counter:$/;"	m	class:LocationStatistics
+_format_log_line	src/location_tracker.py	/^    def _format_log_line(self, date: datetime.date, designation: LocationDesignation) -> str:$/;"	m	class:LocationTracker
+_format_percentage	src/statistics.py	/^    def _format_percentage(self, count: int, total: int) -> str:$/;"	m	class:LocationStatistics
+_get_data_file	src/location_tracker.py	/^    def _get_data_file(self, year: int) -> Path:$/;"	m	class:LocationTracker
+_get_default_designation	src/location_tracker.py	/^    def _get_default_designation(self, date: datetime.date) -> LocationDesignation:$/;"	m	class:LocationTracker
+_get_designation_color	src/calendar_view.py	/^    def _get_designation_color(self, designation: LocationDesignation) -> str:$/;"	m	class:CalendarView
+_get_designation_display	src/calendar_view.py	/^    def _get_designation_display(self, designation: LocationDesignation) -> str:$/;"	m	class:CalendarView
+_get_week_number	src/location_tracker.py	/^    def _get_week_number(self, date: datetime.date) -> int:$/;"	m	class:LocationTracker
+_parse_log_line	src/location_tracker.py	/^    def _parse_log_line(self, line: str) -> Optional[tuple]:$/;"	m	class:LocationTracker
+action	src/cli.py	/^        action='store_true',$/;"	v
+action_group	src/cli.py	/^    action_group = parser.add_mutually_exclusive_group()$/;"	v
+calendar_view.py	src/calendar_view.py	1;"	F
+cli.py	src/cli.py	1;"	F
+cmd_calendar	src/interactive.py	/^    def cmd_calendar(self, args: list):$/;"	m	class:InteractiveMode
+cmd_force	src/interactive.py	/^    def cmd_force(self, args: list):$/;"	m	class:InteractiveMode
+cmd_get	src/interactive.py	/^    def cmd_get(self, args: list):$/;"	m	class:InteractiveMode
+cmd_help	src/interactive.py	/^    def cmd_help(self, args: list):$/;"	m	class:InteractiveMode
+cmd_quit	src/interactive.py	/^    def cmd_quit(self, args: list):$/;"	m	class:InteractiveMode
+cmd_set	src/interactive.py	/^    def cmd_set(self, args: list):$/;"	m	class:InteractiveMode
+cmd_stats	src/interactive.py	/^    def cmd_stats(self, args: list):$/;"	m	class:InteractiveMode
+cmd_validate	src/interactive.py	/^    def cmd_validate(self, args: list):$/;"	m	class:InteractiveMode
+cmd_work_summary	src/interactive.py	/^    def cmd_work_summary(self, args: list):$/;"	m	class:InteractiveMode
+const	src/cli.py	/^        const='30',$/;"	v
+const	src/cli.py	/^        const='CURRENT',$/;"	v
+const	src/cli.py	/^        const='TODAY',$/;"	v
+description	src/cli.py	/^        description='Work Location Tracker - Track daily work location designations',$/;"	v
+display_main_menu	src/interactive.py	/^    def display_main_menu(self):$/;"	m	class:InteractiveMode
+format_stats_report	src/statistics.py	/^    def format_stats_report(self, stats: Dict) -> str:$/;"	m	class:LocationStatistics
+formatter_class	src/cli.py	/^        formatter_class=argparse.RawDescriptionHelpFormatter,$/;"	v
+from_short_code	src/location_tracker.py	/^    def from_short_code(cls, code: str):$/;"	m	class:LocationDesignation
+generate_summary_report	src/statistics.py	/^    def generate_summary_report(self) -> str:$/;"	m	class:LocationStatistics
+generate_work_days_summary	src/statistics.py	/^    def generate_work_days_summary(self, stats: Dict) -> str:$/;"	m	class:LocationStatistics
+get_30_day_stats	src/statistics.py	/^    def get_30_day_stats(self, end_date: date = None) -> Dict:$/;"	m	class:LocationStatistics
+get_365_day_stats	src/statistics.py	/^    def get_365_day_stats(self, end_date: date = None) -> Dict:$/;"	m	class:LocationStatistics
+get_90_day_stats	src/statistics.py	/^    def get_90_day_stats(self, end_date: date = None) -> Dict:$/;"	m	class:LocationStatistics
+get_date_range_data	src/location_tracker.py	/^    def get_date_range_data(self, start_date: datetime.date, end_date: datetime.date) -> Dict[datetime.date, LocationDesignation]:$/;"	m	class:LocationTracker
+get_designation	src/location_tracker.py	/^    def get_designation(self, date: datetime.date) -> LocationDesignation:$/;"	m	class:LocationTracker
+get_legend	src/calendar_view.py	/^    def get_legend(self) -> str:$/;"	m	class:CalendarView
+get_period_stats	src/statistics.py	/^    def get_period_stats(self, start_date: date, end_date: date) -> Dict:$/;"	m	class:LocationStatistics
+handle_calendar	src/cli.py	/^def handle_calendar(tracker: LocationTracker, month_str: str, use_color: bool = True):$/;"	f
+handle_get	src/cli.py	/^def handle_get(tracker: LocationTracker, date_str: str):$/;"	f
+handle_set_location	src/cli.py	/^def handle_set_location(tracker: LocationTracker, designation: LocationDesignation, date_str: str, force: bool = False):$/;"	f
+handle_stats	src/cli.py	/^def handle_stats(tracker: LocationTracker, period: str):$/;"	f
+handle_validate	src/cli.py	/^def handle_validate(tracker: LocationTracker, year_str: str):$/;"	f
+handle_work_summary	src/cli.py	/^def handle_work_summary(tracker: LocationTracker, days_str: str):$/;"	f
+help	src/cli.py	/^        help='Directory for data files (default: SEAT_TRACKER_DATA_DIR env var or .\/data)'$/;"	v
+help	src/cli.py	/^        help='Disable colored output'$/;"	v
+help	src/cli.py	/^        help='Force overwrite without prompting'$/;"	v
+help	src/cli.py	/^        help='Get designation for date (default: today)'$/;"	v
+help	src/cli.py	/^        help='Set location to HOLIDAY'$/;"	v
+help	src/cli.py	/^        help='Set location to HOME (Work From Home)'$/;"	v
+help	src/cli.py	/^        help='Set location to LAB (Work From Lab)'$/;"	v
+help	src/cli.py	/^        help='Set location to OTHER'$/;"	v
+help	src/cli.py	/^        help='Set location to TRAVEL (Work Travel)'$/;"	v
+help	src/cli.py	/^        help='Set location to VACATION'$/;"	v
+help	src/cli.py	/^        help='Set location to WEEKEND'$/;"	v
+help	src/cli.py	/^        help='Show calendar (optional: YYYY or YYYY-MM)'$/;"	v
+help	src/cli.py	/^        help='Show statistics (default: 30 days; options: 30, 90, 365, all, or any number)'$/;"	v
+help	src/cli.py	/^        help='Show work days summary (default: 30 days)'$/;"	v
+help	src/cli.py	/^        help='Start interactive mode'$/;"	v
+help	src/cli.py	/^        help='Validate data file (default: current year)'$/;"	v
+interactive.py	src/interactive.py	1;"	F
+load_year_data	src/location_tracker.py	/^    def load_year_data(self, year: int) -> Dict[datetime.date, LocationDesignation]:$/;"	m	class:LocationTracker
+location_group	src/cli.py	/^    location_group = parser.add_mutually_exclusive_group()$/;"	v
+location_tracker.py	src/location_tracker.py	1;"	F
+main	src/cli.py	/^def main():$/;"	f
+metavar	src/cli.py	/^        metavar='DATE',$/;"	v
+metavar	src/cli.py	/^        metavar='DAYS',$/;"	v
+metavar	src/cli.py	/^        metavar='PERIOD',$/;"	v
+metavar	src/cli.py	/^        metavar='YEAR',$/;"	v
+metavar	src/cli.py	/^        metavar='YEAR|MONTH',$/;"	v
+nargs	src/cli.py	/^        nargs='?',$/;"	v
+parse_date	src/cli.py	/^def parse_date(date_str: str) -> date:$/;"	f
+parse_date	src/interactive.py	/^    def parse_date(self, date_str: str) -> Optional[date]:$/;"	m	class:InteractiveMode
+parse_designation	src/interactive.py	/^    def parse_designation(self, des_str: str) -> Optional[LocationDesignation]:$/;"	m	class:InteractiveMode
+parser	src/cli.py	/^    parser = argparse.ArgumentParser($/;"	v
+process_command	src/interactive.py	/^    def process_command(self, command_line: str):$/;"	m	class:InteractiveMode
+render_current_month	src/calendar_view.py	/^    def render_current_month(self, highlight_today: bool = True) -> str:$/;"	m	class:CalendarView
+render_current_month_with_legend	src/calendar_view.py	/^    def render_current_month_with_legend(self) -> str:$/;"	m	class:CalendarView
+render_month	src/calendar_view.py	/^    def render_month(self, year: int, month: int, highlight_day: Optional[int] = None) -> str:$/;"	m	class:CalendarView
+render_month_with_legend	src/calendar_view.py	/^    def render_month_with_legend(self, year: int, month: int, highlight_day: Optional[int] = None) -> str:$/;"	m	class:CalendarView
+render_year	src/calendar_view.py	/^    def render_year(self, year: int) -> str:$/;"	m	class:CalendarView
+render_year_with_legend	src/calendar_view.py	/^    def render_year_with_legend(self, year: int) -> str:$/;"	m	class:CalendarView
+run	src/interactive.py	/^    def run(self):$/;"	m	class:InteractiveMode
+save_year_data	src/location_tracker.py	/^    def save_year_data(self, year: int, data: Dict[datetime.date, LocationDesignation]):$/;"	m	class:LocationTracker
+set_designation	src/location_tracker.py	/^    def set_designation(self, date: datetime.date, designation: LocationDesignation, auto_weekend: bool = True):$/;"	m	class:LocationTracker
+setup_parser	src/cli.py	/^def setup_parser():$/;"	f
+statistics.py	src/statistics.py	1;"	F
+tracker.py	tracker.py	1;"	F
+type	src/cli.py	/^        type=Path,$/;"	v
+type	src/cli.py	/^        type=str,$/;"	v
+validate_data	src/location_tracker.py	/^    def validate_data(self, year: int) -> list:$/;"	m	class:LocationTracker

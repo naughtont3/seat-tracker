@@ -1,0 +1,307 @@
+.TH TRACKER 1 "October 2025" "Version 1.0" "User Commands"
+.SH NAME
+tracker \- work location tracking utility with calendar and statistics
+.SH SYNOPSIS
+.B tracker
+[\fIOPTION\fR] [\fIARGUMENT\fR]
+.SH DESCRIPTION
+.B tracker
+is a command-line tool for tracking daily work location designations with an intuitive flag-based interface. It provides colored calendar displays, interactive mode for bulk updates, statistics and reporting, and human-readable storage in plain text files.
+.PP
+The tool tracks seven location designations: HOME (work from home), LAB (work from lab), TRAVEL (work travel), WEEKEND, VACATION, HOLIDAY, and OTHER. Each designation has a single-letter code for quick reference.
+.PP
+When invoked without arguments, the tool displays the current month's calendar in a non-interactive mode. Use \fB--interactive\fR to enter interactive mode for bulk updates.
+.SH OPTIONS
+.SS Location Setting Options
+.TP
+.BR \-\-home ", " \-\-h " [\fIDATE\fR]"
+Set work from home designation. If no date is provided, uses today.
+.TP
+.BR \-\-lab ", " \-\-l " [\fIDATE\fR]"
+Set work from lab designation. If no date is provided, uses today.
+.TP
+.BR \-\-travel ", " \-\-t " [\fIDATE\fR]"
+Set work travel designation. If no date is provided, uses today.
+.TP
+.BR \-\-vacation ", " \-\-v " [\fIDATE\fR]"
+Set vacation designation. If no date is provided, uses today.
+.TP
+.BR \-\-holiday ", " \-\-x " [\fIDATE\fR]"
+Set holiday designation. If no date is provided, uses today.
+.TP
+.BR \-\-weekend ", " \-\-w " [\fIDATE\fR]"
+Set weekend designation. If no date is provided, uses today.
+.TP
+.BR \-\-other ", " \-\-o " [\fIDATE\fR]"
+Set other designation. If no date is provided, uses today.
+.SS Display Options
+.TP
+.BR \-\-calendar ", " \-\-cal ", " \-\-c " [\fIPERIOD\fR]"
+Display calendar view. PERIOD can be:
+.RS
+.IP \(bu 2
+Current month (no argument)
+.IP \(bu 2
+Full year (YYYY format, e.g., 2025)
+.IP \(bu 2
+Specific month (YYYY-MM format, e.g., 2025-10)
+.RE
+.TP
+.BR \-\-stats ", " \-\-s " [\fIDAYS\fR]"
+Show statistics for the specified number of days. Valid values are any positive integer, or "all" to show 30/90/365-day statistics. Default is 30 days.
+.TP
+.BR \-\-work\-summary ", " \-\-ws " [\fIDAYS\fR]"
+Show work days summary for the specified number of days. Default is 30 days.
+.TP
+.BR \-\-get ", " \-\-g " [\fIDATE\fR]"
+Get the designation for a specific date. If no date is provided, uses today.
+.TP
+.BR \-\-no\-color ", " \-\-nocolor
+Disable colored output (useful for piping or non-color terminals).
+.SS Data Management Options
+.TP
+.BR \-\-validate ", " \-\-val " [\fIYEAR\fR]"
+Validate data integrity for the specified year. If no year is provided, validates current year.
+.TP
+.BR \-\-data\-dir " \fIDIRECTORY\fR"
+Use a custom data directory instead of the default ./data location.
+.SS Interactive Mode
+.TP
+.BR \-\-interactive ", " \-\-i
+Start interactive mode for bulk updates and exploration.
+.SH LOCATION DESIGNATIONS
+.TS
+tab(|);
+l l l l.
+Code|Name|Description|Default Days
+_
+H|HOME|Work From Home|Mon, Fri
+L|LAB|Work From Lab|Tue, Wed, Thu
+T|TRAVEL|Work Travel|\-
+W|WEEKEND|Weekend|Sat, Sun
+V|VACATION|Vacation|\-
+X|HOLIDAY|Holiday|\-
+O|OTHER|Other|\-
+.TE
+.SH DATE FORMAT
+Dates must be specified in ISO 8601 format: YYYY-MM-DD (e.g., 2025-10-15).
+.SH INTERACTIVE COMMANDS
+In interactive mode, the following commands are available:
+.TP
+.B calendar [\fIPERIOD\fR]
+Show calendar for current month, full year (YYYY), or specific month (YYYY-MM).
+.TP
+.B set \fIDATE\fR \fIDESIGNATION\fR
+Set designation for a date. DESIGNATION can be the full name (HOME, LAB, etc.) or single-letter code (H, L, etc.).
+.TP
+.B get \fIDATE\fR
+Get designation for a specific date.
+.TP
+.B stats [\fIDAYS\fR|\fBall\fR]
+Show statistics for specified days or all periods (30/90/365).
+.TP
+.B work-summary [\fIDAYS\fR]
+Show work days summary for specified number of days.
+.TP
+.B validate [\fIYEAR\fR]
+Validate data integrity for specified year or current year.
+.TP
+.B help
+Show help information.
+.TP
+.B quit
+Exit interactive mode.
+.SH DATA STORAGE
+Data is stored in plain text files in the format:
+.PP
+.RS
+.nf
+data/YEAR.log
+.fi
+.RE
+.PP
+Each line contains:
+.RS
+.IP \(bu 2
+Date in ISO format (YYYY-MM-DD)
+.IP \(bu 2
+ISO week number (WXX)
+.IP \(bu 2
+Full designation name (HOME, LAB, VACATION, etc.)
+.RE
+.PP
+Example line:
+.PP
+.RS
+.nf
+2025-10-15|W42|HOME
+.fi
+.RE
+.SH ENVIRONMENT
+.TP
+.B SEAT_TRACKER_DATA_DIR
+Specifies the directory where data files are stored. If not set, defaults to ./data relative to the package location.
+.SH FILES
+.TP
+.I ./data/YEAR.log
+Location tracking data for each year.
+.TP
+.I ./conf/
+Configuration files directory.
+.SH EXAMPLES
+.SS Basic Usage
+View current month calendar (default behavior):
+.PP
+.RS
+.nf
+$ tracker
+.fi
+.RE
+.PP
+Set today's location to home:
+.PP
+.RS
+.nf
+$ tracker --home
+.fi
+.RE
+.PP
+Set specific date to vacation:
+.PP
+.RS
+.nf
+$ tracker --vacation 2025-12-25
+.fi
+.RE
+.SS Calendar Views
+View current month:
+.PP
+.RS
+.nf
+$ tracker --calendar
+.fi
+.RE
+.PP
+View full year 2025:
+.PP
+.RS
+.nf
+$ tracker --calendar 2025
+.fi
+.RE
+.PP
+View specific month without colors:
+.PP
+.RS
+.nf
+$ tracker --calendar 2025-11 --no-color
+.fi
+.RE
+.SS Statistics
+Show 30-day statistics:
+.PP
+.RS
+.nf
+$ tracker --stats
+.fi
+.RE
+.PP
+Show all period statistics (30/90/365 days):
+.PP
+.RS
+.nf
+$ tracker --stats all
+.fi
+.RE
+.PP
+Show work summary for last 90 days:
+.PP
+.RS
+.nf
+$ tracker --work-summary 90
+.fi
+.RE
+.SS Interactive Mode
+Start interactive mode and set multiple dates:
+.PP
+.RS
+.nf
+$ tracker --interactive
+tracker> set 2025-10-20 HOME
+tracker> set 2025-10-21 LAB
+tracker> set 2025-10-22 LAB
+tracker> calendar
+tracker> quit
+.fi
+.RE
+.SS Data Management
+Validate current year's data:
+.PP
+.RS
+.nf
+$ tracker --validate
+.fi
+.RE
+.PP
+Use custom data directory:
+.PP
+.RS
+.nf
+$ tracker --data-dir ~/.seattracker --calendar
+.fi
+.RE
+.SH FEATURES
+.SS Auto-Populate Weekends
+When setting a designation for any weekday, the tracker automatically adds Saturday and Sunday of that week as WEEKEND entries (if they don't already exist).
+.SS Multi-Year Support
+The tracker automatically handles multiple years with seamless cross-year queries and automatic file creation for new years.
+.SS Color-Coded Display
+Calendar output uses colors by default to improve readability:
+.RS
+.IP \(bu 2
+Week numbers: Cyan
+.IP \(bu 2
+HOME: Green
+.IP \(bu 2
+LAB: Blue
+.IP \(bu 2
+TRAVEL: Magenta
+.IP \(bu 2
+WEEKEND: Dark gray
+.IP \(bu 2
+VACATION: Yellow
+.IP \(bu 2
+HOLIDAY: Red
+.IP \(bu 2
+OTHER: White
+.IP \(bu 2
+Current day: Bold
+.RE
+.SH EXIT STATUS
+.TP
+.B 0
+Success
+.TP
+.B 1
+General error (invalid arguments, file I/O errors, etc.)
+.SH NOTES
+.IP \(bu 2
+No external dependencies required \- uses Python 3.7+ standard library only.
+.IP \(bu 2
+Data files are human-readable and can be manually edited if needed.
+.IP \(bu 2
+Always run
+.B --validate
+after manual edits to ensure data integrity.
+.IP \(bu 2
+The tool uses ISO 8601 week numbering (weeks start on Monday).
+.SH BUGS
+Report bugs at: https://github.com/anthropics/seat-tracker/issues
+.SH AUTHOR
+Written by the seat-tracker project contributors.
+.SH SEE ALSO
+.BR python3 (1),
+.BR cal (1),
+.BR date (1)
+.PP
+Full documentation available in the README.md file included with the distribution.
