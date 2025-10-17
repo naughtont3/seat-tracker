@@ -2,6 +2,19 @@
 
 A command-line tool for tracking daily work location designations with an intuitive flag-based interface.
 
+## TLDR - Quick Setup
+
+```bash
+# Set data directory (optional but recommended)
+export SEAT_TRACKER_DATA_DIR="$HOME/.seattracker"
+
+# Run the tracker
+python3 seat-tracker.py                 # View calendar
+python3 seat-tracker.py --home          # Set today as work from home
+python3 seat-tracker.py --lab           # Set today as work from lab
+python3 seat-tracker.py --stats 30      # View 30-day statistics
+```
+
 ## Features
 
 - **Simple flag-based CLI** - Use intuitive flags like `--home`, `--lab`, `--vacation`
