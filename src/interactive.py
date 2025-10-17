@@ -145,7 +145,10 @@ class InteractiveMode:
             return
 
         designation = self.tracker.get_designation(date_obj)
-        print(f"{date_obj}: {designation.short_code} - {designation.description}")
+        if designation:
+            print(f"{date_obj}: {designation.short_code} - {designation.description}")
+        else:
+            print(f"{date_obj}: No designation set")
 
     def cmd_stats(self, args: list):
         """Show statistics for a period."""

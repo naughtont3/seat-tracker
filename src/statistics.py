@@ -104,7 +104,8 @@ class LocationStatistics:
             Formatted report string
         """
         lines = []
-        lines.append(f"Work Location Statistics")
+        requested_days = stats.get('requested_days', stats['total_days'])
+        lines.append(f"Work Location Statistics ({requested_days} days)")
         lines.append(f"Period: {stats['start_date']} to {stats['end_date']}")
 
         # Show actual vs requested days

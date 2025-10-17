@@ -62,16 +62,19 @@ class LocationTracker:
         """Get the data file path for a given year."""
         return self.data_dir / f"{year}.log"
 
-    def _get_default_designation(self, date: datetime.date) -> LocationDesignation:
-        """Get default designation based on day of week."""
+    def _get_default_designation(self, date: datetime.date) -> Optional[LocationDesignation]:
+        """Get default designation based on day of week.
+
+        Returns None for weekdays (no assumed default).
+        Returns WEEKEND for Saturdays and Sundays.
+        """
         weekday = date.weekday()  # Monday=0, Sunday=6
 
-        if weekday in [0, 4]:  # Monday or Friday
-            return LocationDesignation.HOME
-        elif weekday in [1, 2, 3]:  # Tuesday, Wednesday, Thursday
-            return LocationDesignation.LAB
-        else:  # Saturday or Sunday
+        if weekday in [5, 6]:  # Saturday or Sunday
             return LocationDesignation.WEEKEND
+        else:
+            # No default for weekdays
+            return None
 
     def _get_week_number(self, date: datetime.date) -> int:
         """Get ISO week number for a date."""
@@ -141,15 +144,15 @@ class LocationTracker:
                 line = self._format_log_line(date, data[date])
                 f.write(line + '\n')
 
-    def get_designation(self, date: datetime.date) -> LocationDesignation:
-        """Get designation for a specific date, returning default if not set."""
+    def get_designation(self, date: datetime.date) -> Optional[LocationDesignation]:
+        """Get designation for a specific date, returning None if not set."""
         year = date.year
         data = self.load_year_data(year)
 
         if date in data:
             return data[date]
         else:
-            return self._get_default_designation(date)
+            return None
 
     def _auto_populate_weekend(self, date: datetime.date, data: Dict[datetime.date, LocationDesignation]):
         """
@@ -209,7 +212,11 @@ class LocationTracker:
         return False
 
     def get_date_range_data(self, start_date: datetime.date, end_date: datetime.date) -> Dict[datetime.date, LocationDesignation]:
-        """Get designations for a date range."""
+        """Get designations for a date range.
+
+        Only returns dates that have actual data entries.
+        Does not include dates with no designation set.
+        """
         result = {}
         current_date = start_date
 
@@ -223,8 +230,7 @@ class LocationTracker:
 
             if current_date in years_data[year]:
                 result[current_date] = years_data[year][current_date]
-            else:
-                result[current_date] = self._get_default_designation(current_date)
+            # No else - we don't add dates without explicit data
 
             current_date += timedelta(days=1)
 

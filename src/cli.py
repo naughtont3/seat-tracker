@@ -422,7 +422,10 @@ def handle_get(tracker: LocationTracker, date_str: str):
         return 1
 
     designation = tracker.get_designation(date_obj)
-    print(f"{date_obj}: {designation.short_code} - {designation.description}")
+    if designation:
+        print(f"{date_obj}: {designation.short_code} - {designation.description}")
+    else:
+        print(f"{date_obj}: No designation set")
     return 0
 
 
