@@ -28,15 +28,15 @@ python3 seat-tracker.py --stats 30      # View 30-day statistics
 
 ## Location Designations
 
-| Short | Full Name | Description         | Flag         | Default Days |
-|-------|-----------|---------------------|--------------|--------------|
-| **H** | HOME      | Work From Home      | `--home`     | Mon, Fri     |
-| **L** | LAB       | Work From Lab       | `--lab`      | Tue, Wed, Thu|
-| **T** | TRAVEL    | Work Travel         | `--travel`   | -            |
-| **W** | WEEKEND   | Weekend             | `--weekend`  | Sat, Sun     |
-| **V** | VACATION  | Vacation            | `--vacation` | -            |
-| **X** | HOLIDAY   | Holiday             | `--holiday`  | -            |
-| **O** | OTHER     | Other               | `--other`    | -            |
+| Short | Full Name | Description         | Flag         |
+|-------|-----------|---------------------|--------------|
+| **H** | HOME      | Work From Home      | `--home`     |
+| **L** | LAB       | Work From Lab       | `--lab`      |
+| **T** | TRAVEL    | Work Travel         | `--travel`   |
+| **W** | WEEKEND   | Weekend             | `--weekend`  |
+| **V** | VACATION  | Vacation            | `--vacation` |
+| **X** | HOLIDAY   | Holiday             | `--holiday`  |
+| **O** | OTHER     | Other               | `--other`    |
 
 ## Installation
 
@@ -235,15 +235,14 @@ python3 seat-tracker.py --home 2025-10-15
 # Unless you've already set them to something else (like VACATION)
 ```
 
-### Default Designations
+### Untracked Dates
 
-If no designation is explicitly set, the calendar shows empty spaces. However, the tracker can apply smart defaults for statistics:
+If no designation is explicitly set for a date:
+- The calendar shows **empty spaces** (no designation letter)
+- The `--get` command returns "**No designation set**"
+- Statistics only count **actual tracked entries**
 
-- **Monday & Friday**: HOME (Work From Home)
-- **Tuesday, Wednesday, Thursday**: LAB (Work From Lab)
-- **Saturday & Sunday**: WEEKEND
-
-Note: Defaults are used for statistics only. The calendar shows actual tracked data.
+This keeps your data clean and shows exactly what you've tracked without assumptions.
 
 ## Directory Structure
 
