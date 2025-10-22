@@ -202,6 +202,16 @@ class LocationStatistics:
                 pct = self._format_percentage(count, work_days)
                 lines.append(f"  {des:6s}: {count:3d} ({pct})")
         lines.append("")
-        lines.append(f"Non-Work Days: {non_work_days}/{total_days} ({self._format_percentage(non_work_days, total_days)})")
+        lines.append(f"  Non-Work Days: {non_work_days:>2d}/{total_days} ({self._format_percentage(non_work_days, total_days)})")
+
+        # Lab + Travel stats
+        lt_count  = stats['counts']['LAB']
+        lt_count += stats['counts']['TRAVEL']
+        lth_count = stats['counts']['HOME'] + lt_count
+        if work_days > 0:
+            lt_pct    = self._format_percentage(lt_count, work_days)
+            lth_pct   = self._format_percentage(lth_count, work_days)
+            lines.append(f"   Lab + Travel: {lt_count:>2d}/{work_days} ({lt_pct})")
+            lines.append(f"Lab+Travel+Home: {lth_count:>2d}/{work_days} ({lth_pct})")
 
         return "\n".join(lines)
