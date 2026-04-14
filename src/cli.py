@@ -52,8 +52,11 @@ Examples:
   # Delete a date entry (removes from log file)
   %(prog)s --delete 2025-10-17
 
-  # Show current month calendar
+  # Show calendar (current month, specific month, year, or date's month)
   %(prog)s --calendar
+  %(prog)s 2026-02
+  %(prog)s 2026
+  %(prog)s 2026-01-30
 
   # Show statistics
   %(prog)s --stats
@@ -85,6 +88,8 @@ Quick Examples:
   %(prog)s --lab 2025-10-15         # Set specific date as Work From Lab
   %(prog)s --delete 2025-10-17      # Delete a date entry
   %(prog)s --calendar               # Show calendar view
+  %(prog)s 2026-02                  # Show February 2026 calendar
+  %(prog)s 2026                     # Show full year 2026 calendar
   %(prog)s --stats                  # Show statistics
 
 Designations: H=Home, L=Lab, T=Travel, W=Weekend, V=Vacation, X=Holiday, O=Other
@@ -241,7 +246,27 @@ Use --help-full for detailed examples and documentation.
         help='Start interactive mode'
     )
 
+    parser.add_argument(
+        'datespec',
+        nargs='?',
+        metavar='YEAR|YYYY-MM|YYYY-MM-DD',
+        help='Show calendar for a year (YYYY), month (YYYY-MM), or the month containing a date (YYYY-MM-DD)'
+    )
+
     return parser
+
+
+def normalize_datespec(datespec: str) -> str:
+    """Convert a bare datespec to the format handle_calendar expects.
+
+    YYYY       → passed through (year view)
+    YYYY-MM    → passed through (month view)
+    YYYY-MM-DD → YYYY-MM (month containing that date)
+    """
+    parts = datespec.split('-')
+    if len(parts) == 3:
+        return f"{parts[0]}-{parts[1]}"
+    return datespec
 
 
 def parse_date(date_str: str) -> date:
@@ -559,9 +584,11 @@ def main():
 #        interactive.run()
 #        return 0
 #
-    # Default: start non-interactive mode showing calendar
+    # Default: show calendar for given datespec, or current month
     else:
         use_color = not args.no_color
+        if args.datespec:
+            return handle_calendar(tracker, normalize_datespec(args.datespec), use_color=use_color)
         return handle_calendar(tracker, "CURRENT", use_color=use_color)
 
 

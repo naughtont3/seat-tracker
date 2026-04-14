@@ -9,7 +9,7 @@ from .calendar_view import CalendarView
 from .statistics import LocationStatistics
 from .interactive import InteractiveMode
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 __all__ = [
     'LocationTracker',
     'LocationDesignation',

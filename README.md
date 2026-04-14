@@ -53,8 +53,11 @@ chmod +x seat-tracker.py
 ```bash
 python3 seat-tracker.py                      # Show current month calendar (default)
 python3 seat-tracker.py --calendar           # Same as above
-python3 seat-tracker.py --calendar 2025      # Full year (all 12 months)
-python3 seat-tracker.py --calendar 2025-11   # Specific month
+python3 seat-tracker.py 2025                 # Full year (all 12 months)
+python3 seat-tracker.py 2025-11              # Specific month
+python3 seat-tracker.py 2025-11-15           # Month containing that date
+python3 seat-tracker.py --calendar 2025      # Same as bare year form
+python3 seat-tracker.py --calendar 2025-11   # Same as bare month form
 ```
 
 ### Set Today's Location
@@ -80,6 +83,10 @@ python3 seat-tracker.py --calendar           # Current month
 python3 seat-tracker.py --calendar 2025      # Full year (all 12 months)
 python3 seat-tracker.py --calendar 2025-11   # Specific month
 python3 seat-tracker.py --calendar --no-color # Plain text (no colors)
+# Shorthand: pass a datespec directly without --calendar
+python3 seat-tracker.py 2025                 # Full year
+python3 seat-tracker.py 2025-11              # Specific month
+python3 seat-tracker.py 2025-11-15           # Month containing that date
 ```
 
 Example output (with colors enabled by default):
