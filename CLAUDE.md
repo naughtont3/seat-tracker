@@ -38,7 +38,7 @@ The project follows a modular architecture with clear separation of concerns:
   - Main entry point for the application
   - Flag-based design: `--home`, `--lab`, `--stats`, etc.
   - Supports both long and short flags (e.g., `--calendar` or `--c`)
-  - Default behavior: shows current month calendar when no args provided
+  - Default behavior: shows current month calendar when no args provided; accepts a bare `datespec` positional arg (`YYYY`, `YYYY-MM`, or `YYYY-MM-DD`) to show a specific calendar without `--calendar`
 
 ## Data Storage Format
 
@@ -62,20 +62,41 @@ Example:
 
 ### Running the Application
 ```bash
-# Main entry point
+# Main entry point (shows current month calendar by default)
 python3 seat-tracker.py
 
-# Common operations
+# Set designations
 python3 seat-tracker.py --home              # Set today as HOME
 python3 seat-tracker.py --lab 2025-10-15    # Set specific date
-python3 seat-tracker.py --calendar          # View current month
-python3 seat-tracker.py --stats 30          # View 30-day statistics
+python3 seat-tracker.py --force --home      # Skip overwrite confirmation
+
+# Query and remove entries
+python3 seat-tracker.py --get               # Get today's designation
+python3 seat-tracker.py --get 2025-10-15    # Get specific date
+python3 seat-tracker.py --delete 2025-10-15 # Delete an entry
+
+# View calendars
+python3 seat-tracker.py --calendar          # Current month
+python3 seat-tracker.py --calendar 2025     # Full year
+python3 seat-tracker.py --calendar 2025-10  # Specific month
+python3 seat-tracker.py 2025               # Full year (bare datespec)
+python3 seat-tracker.py 2025-10            # Specific month (bare datespec)
+python3 seat-tracker.py 2025-10-14         # Month containing date (bare datespec)
+
+# Statistics
+python3 seat-tracker.py --stats             # 30-day stats (default)
+python3 seat-tracker.py --stats 90          # 90-day stats
+python3 seat-tracker.py --stats all         # All periods (30/90/365)
+python3 seat-tracker.py --stats 30 --with-calendar  # Stats with calendar
+python3 seat-tracker.py --work-summary 30   # Work days summary
+
 python3 seat-tracker.py --interactive       # Start interactive mode
+python3 seat-tracker.py --help-full         # Extended documentation
 ```
 
 ### Testing
 ```bash
-# Run integration test
+# Run the single shell-based integration test (no Python unit tests exist)
 ./tests/test_tracker.sh
 
 # Manual testing with temp data directory
